@@ -1,0 +1,7 @@
+{
+  "name": "mobile-app-3rdyr",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
