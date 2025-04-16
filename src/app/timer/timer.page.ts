@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonButton, IonBackButton, IonButtons } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.page.html',
   styleUrls: ['./timer.page.scss'],
   standalone: true,
-  imports: [IonButton, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonButtons, IonBackButton, IonButton, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class TimerPage implements OnInit {
   //time taken as int in seconds

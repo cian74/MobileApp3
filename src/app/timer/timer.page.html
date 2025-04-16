@@ -1,5 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/"> </ion-back-button>
+    </ion-buttons>
+
     <ion-title>Timer</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,16 +20,26 @@
       <div class="timer-display">
         <h1>{{minutes}}:{{seconds}}</h1>
       </div>
-      
+
       <div class="timer-controls">
-        <ion-button expand="block" color="primary" (click)="startTimer()" [disabled]="isRunning">
+        <ion-button
+          expand="block"
+          color="primary"
+          (click)="startTimer()"
+          [disabled]="isRunning"
+        >
           Start
         </ion-button>
-        
-        <ion-button expand="block" color="warning" (click)="pauseTimer()" [disabled]="!isRunning">
+
+        <ion-button
+          expand="block"
+          color="warning"
+          (click)="pauseTimer()"
+          [disabled]="!isRunning"
+        >
           Pause
         </ion-button>
-        
+
         <ion-button expand="block" color="danger" (click)="resetTimer()">
           Reset
         </ion-button>

@@ -13,11 +13,12 @@
       <ion-title size="large">control-panel</ion-title>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content class="button-panel">
     <div>
-      content
+      <ion-button [routerLink]="['/timer']"> Timer </ion-button>
+      <ion-button [routerLink]="['/assignments']">Assignments</ion-button>
+      <ion-button [routerLink]="['/stats']">Statistics</ion-button>
     </div>
-    
   </ion-content>
 </ion-content>
