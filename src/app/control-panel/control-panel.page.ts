@@ -9,7 +9,7 @@ import { RouterLinkWithHref } from '@angular/router';
   templateUrl: './control-panel.page.html',
   styleUrls: ['./control-panel.page.scss'],
   standalone: true,
-  imports: [IonButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, RouterLinkWithHref]
+  imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterLinkWithHref]
 })
 export class ControlPanelPage implements OnInit {
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { AuthService } from '../services/auth.service'; // Adjust path!
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,12 +16,16 @@ export class SignupPage {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   signupWithGoogle() {
     this.authService.googleSignup()
       .then((result) => {
         console.log('Google signup successful', result);
+        this.router.navigate(['/control-panel']);
       })
       .catch((error) => {
         console.error('Google signup error', error);
