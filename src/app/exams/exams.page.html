@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Exams</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add New Exam</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Module Name</ion-label>
+        <ion-input [(ngModel)]="moduleName" placeholder="Enter module name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Exam Date</ion-label>
+        <ion-datetime-button datetime="examDateSelector"></ion-datetime-button>
+      </ion-item>
+
+      <ion-button expand="block" (click)="addExam()">Add Exam</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-datetime
+    id="examDateSelector"
+    [(ngModel)]="examDate"
+    presentation="date"
+    preferWheel="true">
+  </ion-datetime>
+
+  <ion-card *ngIf="exams.length > 0">
+    <ion-card-header>
+      <ion-card-title>Your Exams</ion-card-title>
+    </ion-card-header>
+  
+    <ion-list>
+      <ion-reorder-group (ionItemReorder)="handleReorder($event)" disabled="false">
+        <ion-item *ngFor="let exam of exams">
+          <ion-label class="ion-text-wrap">
+            <h2><strong>Module:</strong> {{ exam.moduleName }}</h2>
+            <p><strong>Date:</strong> {{ exam.examDate | date }}</p>
+          </ion-label>
+
+          <ion-button color="danger" size="small" (click)="deleteExam(exam.id)" slot="end">
+            Delete
+          </ion-button>
+
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+  </ion-card>
+</ion-content>
