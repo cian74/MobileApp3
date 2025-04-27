@@ -50,7 +50,6 @@ import { FormsModule } from '@angular/forms';
     IonRow,
     IonCol,
     IonDatetimeButton,
-    IonModal,
     IonDatetime,
     IonBackButton
   ]

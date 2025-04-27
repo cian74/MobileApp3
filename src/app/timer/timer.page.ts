@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonButton, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { db } from 'src/firebaseConfig';
+import { collection, addDoc} from 'firebase/firestore';
+import { timestamp } from 'rxjs';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-timer',
@@ -45,13 +49,42 @@ export class TimerPage implements OnInit {
     }
   }
 
-  stopTimer() {
+  async stopTimer() {
     if (this.isRunning) {
       clearInterval(this.timerInterval);
       this.isRunning = false;
+
+      const timeStudied = 20 * 60 - this.timeRemaining;
+      if(timeStudied > 0) {
+        await this.recordStudySession(timeStudied);
+      }
+
       //TODO: update first variable to be adjustable
       this.timeRemaining = 20 * 60;
       this.updateTimeDisplay();
+    }
+  }
+
+  async recordStudySession(secondsStudied: number) {
+    try {
+      const auth  = getAuth();
+      const user = auth.currentUser;
+
+      if(!user) {
+        console.log("no user");
+        return;
+      }
+      
+      const studySessionCollection = collection(db, 'users', user.uid, 'studySessions');
+      await addDoc(studySessionCollection, {
+        //second in seconds as int
+        secondsStudied: secondsStudied,
+        //record date aswell- may use this
+        timestamp: new Date().toISOString()
+      });
+    console.log('Study session recorded');
+    } catch(error) {
+      console.error('Error saving study session', error);
     }
   }
 
