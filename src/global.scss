@@ -35,3 +35,194 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/* 
+ * File: global.scss (in your src folder)
+ * This file allows you to apply styling app-wide
+ */
+
+/* Import fonts (add to index.html as well for better performance) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Root variables to use throughout your app */
+:root {
+  /* Colors */
+  --app-primary: #637583;
+  --app-primary-shade: #6f8da7;
+  --app-secondary: #5C6BC0;
+  --app-accent: #FF9800;
+  --app-light: #FAFAFA;
+  --app-dark: #303030;
+  --app-gray: #757575;
+  --app-success: #4CAF50;
+  --app-warning: #FFC107;
+  --app-danger: #F44336;
+  
+  /* Font sizes */
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+  --font-xxl: 2rem;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}
+
+/* Apply base font to everything */
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Button styling */
+ion-button {
+  --border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  &.button-outline {
+    box-shadow: none;
+  }
+}
+
+/* Card styling */
+ion-card {
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  
+  ion-card-header {
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+  }
+  
+  ion-card-title {
+    font-size: var(--font-lg);
+    font-weight: 600;
+  }
+  
+  ion-card-subtitle {
+    font-size: var(--font-sm);
+    color: var(--app-gray);
+  }
+  
+  ion-card-content {
+    padding: var(--spacing-md);
+  }
+}
+
+/* List items */
+ion-item {
+  --padding-start: var(--spacing-md);
+  --padding-end: var(--spacing-md);
+  --padding-top: var(--spacing-sm);
+  --padding-bottom: var(--spacing-sm);
+  --border-radius: 8px;
+  margin: var(--spacing-xs) 0;
+  
+  &:hover {
+    --background: rgba(0, 0, 0, 0.03);
+  }
+}
+
+/* Header styling */
+ion-header {
+  ion-toolbar {
+    --background: var(--app-primary);
+    --color: white;
+    
+    ion-title {
+      font-weight: 600;
+      font-size: var(--font-lg);
+    }
+    
+    ion-back-button {
+      --color: white;
+    }
+  }
+}
+
+/* Form elements */
+ion-input, ion-textarea, ion-select {
+  --padding-start: var(--spacing-md);
+  --padding-end: var(--spacing-md);
+  --padding-top: var(--spacing-sm);
+  --padding-bottom: var(--spacing-sm);
+  --border-radius: 8px;
+  --background: var(--app-light);
+  margin: var(--spacing-xs) 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Chart styling */
+canvas.chart-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  canvas {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-md);
+    background-color: white;
+  }
+}
+
+/* Utility classes */
+.rounded {
+  border-radius: 12px;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Custom animations */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Chart container styles for your stats page */
+.chart-container {
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-md);
+  background-color: white;
+  margin: var(--spacing-lg);
+  height: 100%;
+  width: 100%;
+}
+
+ion-content {
+    --background: £
+}

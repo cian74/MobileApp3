@@ -2,7 +2,7 @@ import { Component, NgModule, OnInit, ViewChild, AfterViewInit } from '@angular/
 import { StudySessionService } from '../services/study-session.service';
 import { AuthService } from '../services/auth.service'; // Assuming you have a service for authentication
 import { ChartData, ChartOptions, Chart } from 'chart.js';
-import { IonBackButton, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons } from "@ionic/angular/standalone";
+import { IonBackButton, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonLabel, IonNote } from "@ionic/angular/standalone";
 import { BaseChartDirective } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
 import { CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, BarController } from 'chart.js';
@@ -14,13 +14,13 @@ Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, B
   templateUrl: './stats.page.html',
   styleUrls: ['./stats.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonContent, IonTitle, IonToolbar,
-    IonHeader, BaseChartDirective, CommonModule,IonBackButton
+  imports: [IonNote, IonLabel, IonItem, IonList, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonButtons, IonContent, IonTitle, IonToolbar,
+    IonHeader, BaseChartDirective, CommonModule, IonBackButton
   ]
 })
 export class StatsPage implements OnInit, AfterViewInit {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-  
+
   // Data for the bar chart
   studySessionChartData: ChartData<'bar'> = {
     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
