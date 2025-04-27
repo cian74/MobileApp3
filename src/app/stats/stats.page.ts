@@ -6,6 +6,7 @@ import { IonBackButton, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
 import { BaseChartDirective } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
 import { CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, BarController } from 'chart.js';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, BarController)
 
@@ -15,8 +16,7 @@ Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, B
   styleUrls: ['./stats.page.scss'],
   standalone: true,
   imports: [IonNote, IonLabel, IonItem, IonList, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonButtons, IonContent, IonTitle, IonToolbar,
-    IonHeader, BaseChartDirective, CommonModule, IonBackButton
-  ]
+    IonHeader, BaseChartDirective, CommonModule, IonBackButton, NavbarComponent]
 })
 export class StatsPage implements OnInit, AfterViewInit {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;

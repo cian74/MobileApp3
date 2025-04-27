@@ -6,13 +6,14 @@ import { db } from 'src/firebaseConfig';
 import { collection, addDoc} from 'firebase/firestore';
 import { timestamp } from 'rxjs';
 import { getAuth } from 'firebase/auth';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.page.html',
   styleUrls: ['./timer.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonBackButton, IonButton, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonButtons, IonBackButton, IonButton, IonCardContent, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, NavbarComponent]
 })
 export class TimerPage implements OnInit {
   //time taken as int in seconds

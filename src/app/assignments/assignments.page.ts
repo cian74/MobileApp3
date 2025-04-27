@@ -28,6 +28,7 @@ import {
 } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-assignments',
@@ -46,6 +47,7 @@ import { FormsModule } from '@angular/forms';
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
+    NavbarComponent,
     IonItem,
     IonLabel,
     IonInput,

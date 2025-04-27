@@ -24,6 +24,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ItemReorderEventDetail } from '@ionic/angular';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-exams',
@@ -51,8 +52,9 @@ import { ItemReorderEventDetail } from '@ionic/angular';
     IonBackButton,
     IonReorder,
     IonReorderGroup,
-    IonList
-  ]
+    IonList,
+    NavbarComponent
+]
 })
 export class ExamsPage implements OnInit {
 
