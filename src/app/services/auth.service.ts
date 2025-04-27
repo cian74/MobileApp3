@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, User } from 'firebase/auth';
 import { firebaseConfig } from '../../firebaseConfig'; // Adjust path if needed
 
 @Injectable({
@@ -22,4 +22,20 @@ export class AuthService {
   emailSignup(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
+
+  getCurrentUserId(): string | null {
+    const user: User | null = this.auth.currentUser; // Get the current user
+    return user ? user.uid : null;
+  }
+
+  listenForAuthChanges() {
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        console.log('User signed in:', user.uid);
+      } else {
+        console.log('No user is signed in');
+      }
+    });
+  }
+
 }
