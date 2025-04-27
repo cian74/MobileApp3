@@ -18,8 +18,40 @@
   <ion-card>
     <ion-card-content class="ion-text-center">
       <div class="timer-display">
-        <h1>{{minutes}}:{{seconds}}</h1>
+        <svg width="200" height="200" viewBox="0 0 100 100">
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            stroke="#e0e0e0"
+            stroke-width="10"
+            fill="none"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            stroke="#3880ff"
+            stroke-width="10"
+            fill="none"
+            [attr.stroke-dasharray]="circumference"
+            [attr.stroke-dashoffset]="strokeDashoffset"
+            stroke-linecap="round"
+            transform="rotate(-90 50 50)"
+          />
+          <text
+            x="50%"
+            y="50%"
+            text-anchor="middle"
+            dy=".3em"
+            font-size="12"
+            fill="#fff"
+          >
+            {{minutes}}:{{seconds}}
+          </text>
+        </svg>
       </div>
+      
 
       <div class="timer-controls">
         <ion-button

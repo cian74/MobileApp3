@@ -5,10 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-button expand="block" (click)="signupWithGoogle()">
-    Sign up with Google
-  </ion-button>
-
+  
   <ion-item>
     <ion-label position="floating">Email</ion-label>
     <ion-input [(ngModel)]="email" type="email"></ion-input>
@@ -21,5 +18,9 @@
 
   <ion-button expand="block" (click)="signupWithEmailPassword()">
     Sign up with Email
+  </ion-button>
+  
+  <ion-button expand="block" (click)="signupWithGoogle()">
+    Sign up with Google
   </ion-button>
 </ion-content>

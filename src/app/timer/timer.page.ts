@@ -21,6 +21,8 @@ export class TimerPage implements OnInit {
   seconds: string = '00';
   timerInterval: any;
   isRunning: boolean = false;
+  circumference = 2 * Math.PI * 45; // 2πr where r = 45
+  strokeDashoffset = 0;
 
   constructor() { }
 
@@ -98,6 +100,9 @@ export class TimerPage implements OnInit {
 
     this.minutes = minutesVal < 10 ? '0' + minutesVal : minutesVal.toString();
     this.seconds = secondsVal < 10 ? '0' + secondsVal : secondsVal.toString();
+    
+    this.strokeDashoffset = this.circumference * (this.timeRemaining / (20 * 60));
+
   }
 
 }
