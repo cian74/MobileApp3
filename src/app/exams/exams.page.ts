@@ -55,6 +55,8 @@ import { ItemReorderEventDetail } from '@ionic/angular';
   ]
 })
 export class ExamsPage implements OnInit {
+
+  //default exam values
   moduleName: string = '';
   examDate: string = '';
 
@@ -62,10 +64,12 @@ export class ExamsPage implements OnInit {
 
   constructor(private examsService: ExamsService) { }
 
+  //loads users exams on mount
   ngOnInit() {
     this.loadExams();
   }
 
+  //leverages ionic reorder event to reorder assignments in a list
   handleReorder(event: CustomEvent<ItemReorderEventDetail>) {
     console.log('Dragged from', event.detail.from, 'to', event.detail.to);
 
@@ -78,21 +82,26 @@ export class ExamsPage implements OnInit {
     event.detail.complete();
   }
 
+  //async func to add exams to exam list
+
   async addExam() {
     if (this.moduleName && this.examDate) {
       await this.examsService.addExam(this.moduleName, this.examDate);
       this.moduleName = '';
       this.examDate = '';
+      //will load exams
       this.loadExams();
     } else {
       console.warn('All fields are required');
     }
   }
 
+  //calls load exams from examsService
   async loadExams() {
     this.exams = await this.examsService.getExams();
   }
 
+  //deletes exam by id
   async deleteExam(id: string) {
     await this.examsService.deleteExam(id);
     this.loadExams();

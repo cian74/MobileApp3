@@ -35,6 +35,7 @@ export class StatsPage implements OnInit, AfterViewInit {
     ],
   };
 
+  //custom chart js Options
   chartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -104,6 +105,8 @@ export class StatsPage implements OnInit, AfterViewInit {
       // Update the chart data with the aggregated week data
       this.studySessionChartData.datasets[0].data = weekData;
 
+      //BUG: this fixes chart showing wrong data
+      //i dont know why
       setTimeout(() => {
         if (this.chart) {
           this.chart.update();
@@ -115,7 +118,8 @@ export class StatsPage implements OnInit, AfterViewInit {
   }
 
   aggregateStudySessionsByWeek(sessions: any[]): number[] {
-    const weekData = [0, 0, 0, 0]; // Example data for 4 weeks, adjust as needed
+    //shows data four weeks at time
+    const weekData = [0, 0, 0, 0]; 
 
     sessions.forEach(session => {
       const weekIndex = this.getWeekIndex(session.timestamp); // Get week index for the session

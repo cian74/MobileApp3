@@ -21,6 +21,8 @@ export class SignupPage {
     private router: Router
   ) { }
 
+  //firestore function that leverages google auth
+  //lets user use google auth method using firestores own popup 
   signupWithGoogle() {
     this.authService.googleSignup()
       .then((result) => {
@@ -32,6 +34,8 @@ export class SignupPage {
       });
   }
 
+  //traditional sign up method
+  //password and email required to pass in
   signupWithEmailPassword() {
     if (this.email && this.password) {
       this.authService.emailSignup(this.email, this.password)

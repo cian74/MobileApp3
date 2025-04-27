@@ -29,6 +29,7 @@ export class TimerPage implements OnInit {
   ngOnInit() {
   }
 
+  //called to start timer
   startTimer() {
     if (!this.isRunning) {
       this.isRunning = true;
@@ -44,6 +45,7 @@ export class TimerPage implements OnInit {
     }
   }
 
+  //pauses timer
   pauseTimer() {
     if (this.isRunning) {
       clearInterval(this.timerInterval);
@@ -51,6 +53,7 @@ export class TimerPage implements OnInit {
     }
   }
 
+  //stops timer
   async stopTimer() {
     if (this.isRunning) {
       clearInterval(this.timerInterval);
@@ -67,6 +70,7 @@ export class TimerPage implements OnInit {
     }
   }
 
+  //records study session
   async recordStudySession(secondsStudied: number) {
     try {
       const auth  = getAuth();
@@ -90,10 +94,12 @@ export class TimerPage implements OnInit {
     }
   }
 
+  //resets timers
   resetTimer() {
     this.stopTimer();
   }
 
+  //updates timer display
   updateTimeDisplay() {
     const minutesVal = Math.floor(this.timeRemaining / 60);
     const secondsVal = Math.floor(this.timeRemaining % 60);
@@ -102,7 +108,5 @@ export class TimerPage implements OnInit {
     this.seconds = secondsVal < 10 ? '0' + secondsVal : secondsVal.toString();
     
     this.strokeDashoffset = this.circumference * (this.timeRemaining / (20 * 60));
-
   }
-
 }

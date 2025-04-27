@@ -9,6 +9,8 @@ import { RouterLinkWithHref } from '@angular/router';
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, RouterLinkWithHref],
 })
+
+//first page that is loaded
 export class HomePage {
   constructor() {}
 }

@@ -58,7 +58,15 @@ import { FormsModule } from '@angular/forms';
     IonList
   ]
 })
+/**
+ * The `AssignmentsPage` class is responsible for managing the assignments page in the application.
+ * It provides functionality to display, add, reorder, and delete assignments.
+ * 
+ * @implements OnInit
+ */
 export class AssignmentsPage implements OnInit {
+
+  //default assignment fields
   moduleName: string = '';
   assignmentName: string = '';
   dueDate: string = '';
@@ -77,6 +85,7 @@ export class AssignmentsPage implements OnInit {
     event.detail.complete();
   }
 
+  //adds assignment as document to db
   async addAssignment() {
     if (this.moduleName && this.assignmentName && this.dueDate) {
       await this.assignmentService.addAssignment(this.moduleName, this.assignmentName, this.dueDate);
@@ -89,10 +98,12 @@ export class AssignmentsPage implements OnInit {
     }
   }
 
+  //gets assignments from assignment service
   async loadAssignments() {
     this.assignments = await this.assignmentService.getAssignments();
   }
 
+  //calles delete assignment from assignment service
   async deleteAssignment(id: string) {
     await this.assignmentService.deleteAssignment(id);
     this.loadAssignments();

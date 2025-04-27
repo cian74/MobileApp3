@@ -18,8 +18,10 @@ export class AssignmentService {
   async addAssignment(moduleName: string, assignmentName: string, dueDate: string) {
     const user = this.auth.currentUser;
     if (user) {
+      //creates new doc in firestore
       const userAssignmentsRef = collection(this.db, 'users', user.uid, 'assignments');
       return await addDoc(userAssignmentsRef, {
+        //assignment fields passed in by user
         moduleName,
         assignmentName,
         dueDate
@@ -34,14 +36,16 @@ export class AssignmentService {
     const user = this.auth.currentUser;
     if (user) {
       const userAssignmentsRef = collection(this.db, 'users', user.uid, 'assignments');
+      //getDocs (firestore function that gets all docs in a collection)
       const querySnapshot = await getDocs(userAssignmentsRef);
+      //maps through docs and returns doc data
       return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } else {
       throw new Error('User not logged in');
     }
   }
 
-  // Delete an assignment
+  // Delete an assignment by id
   async deleteAssignment(assignmentId: string) {
     const user = this.auth.currentUser;
     if (user) {

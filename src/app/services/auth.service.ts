@@ -23,11 +23,13 @@ export class AuthService {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
+  //gets current user id from firebase auth
   getCurrentUserId(): string | null {
     const user: User | null = this.auth.currentUser; // Get the current user
     return user ? user.uid : null;
   }
 
+  //checks in user is signed in on given page
   listenForAuthChanges() {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
