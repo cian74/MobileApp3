@@ -1,27 +1,29 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { StudySessionService } from '../services/study-session.service';
 import { AuthService } from '../services/auth.service'; // Assuming you have a service for authentication
-import { ChartData, ChartOptions, Chart} from 'chart.js';
-import { IonBackButton, IonHeader, IonToolbar, IonTitle, IonContent } from "@ionic/angular/standalone";
+import { ChartData, ChartOptions, Chart } from 'chart.js';
+import { IonBackButton, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons } from "@ionic/angular/standalone";
 import { BaseChartDirective } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
-import { CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend,BarController } from 'chart.js';
+import { CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, BarController } from 'chart.js';
 
-Chart.register(CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend,BarController)
+Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, BarController)
 
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.page.html',
   styleUrls: ['./stats.page.scss'],
   standalone: true,
-  imports: [IonContent, IonTitle, IonToolbar,
-    IonHeader,BaseChartDirective,CommonModule
+  imports: [IonButtons, IonContent, IonTitle, IonToolbar,
+    IonHeader, BaseChartDirective, CommonModule,IonBackButton
   ]
 })
-export class StatsPage implements OnInit {
+export class StatsPage implements OnInit, AfterViewInit {
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+  
   // Data for the bar chart
   studySessionChartData: ChartData<'bar'> = {
-    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], // Customize these labels based on your data (e.g., weeks)
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
     datasets: [
       {
         data: [0, 0, 0, 0], // Initial empty data, to be populated dynamically
@@ -35,6 +37,7 @@ export class StatsPage implements OnInit {
 
   chartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
@@ -43,19 +46,41 @@ export class StatsPage implements OnInit {
           text: 'Seconds Studied',
         },
       },
+      x: {
+        ticks: {
+          color: '#333',
+        }
+      }
     },
+    plugins: {
+      legend: {
+        display: true,
+      }
+    }
   };
 
   // Explicitly type the studySessions array
-  studySessions: { name: string; value: number }[] = []; // <-- Make sure the type is explicitly declared
+  studySessions: { name: string; value: number }[] = [];
 
   constructor(
     private studySessionService: StudySessionService,
     private authService: AuthService // Inject the auth service to get current user
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadStudySessions();
+  }
+
+  ngAfterViewInit() {
+    // Initial chart update if needed
+    if (this.chart && this.chart.chart) {
+      this.chart.chart.data.datasets.forEach((dataset, i) => {
+        if (this.chart && this.chart.chart) {
+          this.chart.chart.setDatasetVisibility(i, true);
+        }
+      });
+      this.chart.update();
+    }
   }
 
   async loadStudySessions() {
@@ -78,6 +103,12 @@ export class StatsPage implements OnInit {
 
       // Update the chart data with the aggregated week data
       this.studySessionChartData.datasets[0].data = weekData;
+
+      setTimeout(() => {
+        if (this.chart) {
+          this.chart.update();
+        }
+      }, 100);
     } catch (error) {
       console.error('Error loading study sessions:', error);
     }
@@ -92,6 +123,7 @@ export class StatsPage implements OnInit {
         weekData[weekIndex] += session.secondsStudied;
       }
     });
+    console.log(weekData);
 
     return weekData;
   }

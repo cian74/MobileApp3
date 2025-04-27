@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>Statistics</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,8 +10,6 @@
 <ion-content>
   <div style="height: 100%; display: flex; flex-direction: column; align-items: center;">
     <h2>Study Sessions Overview</h2>
-
-    <!-- Display the bar chart -->
     <div style="width: 80%; height: 300px;">
       <canvas
         baseChart
@@ -16,21 +17,6 @@
         [options]="chartOptions"
         [type]="'bar'">
       </canvas>
-    </div>
-
-    <!-- Display the study sessions data as a list -->
-    <div *ngIf="studySessions.length > 0" style="width: 80%; margin-top: 20px;">
-      <h3>Study Sessions by Week:</h3>
-      <ul>
-        <li *ngFor="let session of studySessions">
-          <strong>{{ session.name }}:</strong> {{ session.value }} seconds
-        </li>
-      </ul>
-    </div>
-
-    <!-- If no study sessions are available -->
-    <div *ngIf="studySessions.length === 0" style="margin-top: 20px;">
-      <p>No study sessions available for the last 4 weeks.</p>
     </div>
   </div>
 </ion-content>
