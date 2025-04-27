@@ -42,25 +42,26 @@
     <ion-card-header>
       <ion-card-title>Your Assignments</ion-card-title>
     </ion-card-header>
-
-    <ion-grid>
-      <ion-row class="ion-text-center" color="light">
-        <ion-col><strong>Module</strong></ion-col>
-        <ion-col><strong>Assignment</strong></ion-col>
-        <ion-col><strong>Due Date</strong></ion-col>
-        <ion-col><strong>Actions</strong></ion-col>
-      </ion-row>
-
-      <ion-row *ngFor="let assignment of assignments" class="ion-text-center">
-        <ion-col>{{ assignment.moduleName }}</ion-col>
-        <ion-col>{{ assignment.assignmentName }}</ion-col>
-        <ion-col>{{ assignment.dueDate | date }}</ion-col>
-        <ion-col>
-          <ion-button color="danger" size="small" (click)="deleteAssignment(assignment.id)">Delete</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  
+    <ion-list>
+      <ion-reorder-group (ionItemReorder)="handleReorder($event)" disabled="false">
+        <ion-item *ngFor="let assignment of assignments">
+          <ion-label class="ion-text-wrap">
+            <h2><strong>Module:</strong> {{ assignment.moduleName }}</h2>
+            <p><strong>Assignment:</strong> {{ assignment.assignmentName }}</p>
+            <p><strong>Due:</strong> {{ assignment.dueDate | date }}</p>
+          </ion-label>
+  
+          <ion-button color="danger" size="small" (click)="deleteAssignment(assignment.id)" slot="end">
+            Delete
+          </ion-button>
+  
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
   </ion-card>
+  
 
   <!-- ✅ Just place this simple ion-datetime -->
   

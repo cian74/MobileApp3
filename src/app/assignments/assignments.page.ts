@@ -20,7 +20,11 @@ import {
   IonCol,
   IonDatetimeButton,
   IonModal,
-  IonDatetime
+  IonDatetime,
+  IonReorder,
+  IonReorderGroup,
+  ItemReorderEventDetail,
+  IonList,
 } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -46,12 +50,12 @@ import { FormsModule } from '@angular/forms';
     IonLabel,
     IonInput,
     IonButton,
-    IonGrid,
-    IonRow,
-    IonCol,
     IonDatetimeButton,
     IonDatetime,
-    IonBackButton
+    IonBackButton,
+    IonReorder,
+    IonReorderGroup,
+    IonList
   ]
 })
 export class AssignmentsPage implements OnInit {
@@ -65,6 +69,12 @@ export class AssignmentsPage implements OnInit {
 
   ngOnInit() {
     this.loadAssignments();
+  }
+//https://ionicframework.com/docs/api/reorder
+  handleReorder(event: CustomEvent<ItemReorderEventDetail>){
+    console.log('Dragged from', event.detail.from, 'to', event.detail.to);
+
+    event.detail.complete();
   }
 
   async addAssignment() {
